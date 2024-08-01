@@ -3,10 +3,10 @@
 " Description: A Vim plugin for tidying markdown pipe tables.
 " Version: 0.1
 
-if exists('g:loaded_fugitive')
+if exists('g:loaded_tidytable')
   finish
 endif
-let g:loaded_fugitive = 1
+let g:loaded_tidytable = 1
 
 function! TidyMarkdownPipeTable()
     if !(s:VerifyHasAlignmentFunction() && s:VerifyInsideMarkdownTable()) 
