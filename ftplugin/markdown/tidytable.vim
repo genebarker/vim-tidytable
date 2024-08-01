@@ -2,19 +2,19 @@
 " Maintainer: Eugene F. Barker <http://madman.com/about.html>
 " Description: A Vim plugin for tidying markdown pipe tables.
 " Version: 0.1
-"
+
 if exists('g:loaded_fugitive')
   finish
 endif
 let g:loaded_fugitive = 1
 
-function! s:TidyMarkdownPipeTable()
-    if !(VerifyHasAlignmentFunction() && VerifyInsideMarkdownTable()) 
+function! TidyMarkdownPipeTable()
+    if !(s:VerifyHasAlignmentFunction() && s:VerifyInsideMarkdownTable()) 
         return 0
     endif
-    call MinimizeSeperatorLine()
-    call AlignMarkdownTableColumns()
-    call TidyMarkdownTableHeader()
+    call s:MinimizeSeperatorLine()
+    call s:AlignMarkdownTableColumns()
+    call s:TidyMarkdownTableHeader()
 endfunc
 
 function! s:VerifyHasAlignmentFunction()
@@ -35,8 +35,8 @@ function! s:VerifyInsideMarkdownTable()
 endfunc
 
 function! s:MinimizeSeperatorLine()
-    let start_line_no = GetStartLineNoOfTable()
-    let end_line_no = GetEndLineNoOfTable()
+    let start_line_no = s:GetStartLineNoOfTable()
+    let end_line_no = s:GetEndLineNoOfTable()
     let seperator_line = getline(start_line_no + 1)
     if seperator_line !~ '^.*-\{3\}'
         " not a seperator for a markdown table
@@ -67,8 +67,8 @@ function! s:AlignMarkdownTableColumns()
 endfunc
 
 function! s:TidyMarkdownTableHeader()
-    let start_line_no = GetStartLineNoOfTable()
-    let end_line_no = GetEndLineNoOfTable()
+    let start_line_no = s:GetStartLineNoOfTable()
+    let end_line_no = s:GetEndLineNoOfTable()
     let seperator_line = getline(start_line_no + 1)
     if seperator_line !~ '^.*-\{3\}'
         echo 'info: no markdown table header to tidy'
@@ -96,4 +96,4 @@ function! s:TidyMarkdownTableHeader()
     call setline(start_line_no + 1, tidy_seperator)
 endfunc
 
-command! TidyMarkdownTable call s:TidyMarkdownPipeTable()
+command! TidyMarkdownTable call TidyMarkdownPipeTable()
