@@ -8,7 +8,7 @@ if exists('g:loaded_fugitive')
 endif
 let g:loaded_fugitive = 1
 
-function! TidyMarkdownTable()
+function! s:TidyMarkdownTable()
     if !(VerifyHasAlignmentFunction() && VerifyInsideMarkdownTable()) 
         return 0
     endif
@@ -17,7 +17,7 @@ function! TidyMarkdownTable()
     call TidyMarkdownTableHeader()
 endfunc
 
-function! VerifyHasAlignmentFunction()
+function! s:VerifyHasAlignmentFunction()
     if exists(':Tabularize')
         return 1
     endif
@@ -95,3 +95,5 @@ function! s:TidyMarkdownTableHeader()
     endwhile
     call setline(start_line_no + 1, tidy_seperator)
 endfunc
+
+command! TidyMarkdownTable call s:TidyMarkdownTable()
