@@ -7,6 +7,9 @@ A Vim plugin for tidying markdown pipe tables (see `pipe_tables` in
 Currently, this plugin only supports tidying the simple form:
 
 ```md
+
+## Simple Pipe Table
+
 No  | Color | Notes
 --- | ----- | --------------------
 1   | Red   | Can symbolize danger
