@@ -6,7 +6,7 @@ A Vim plugin for tidying markdown pipe tables (see `pipe_tables` in
 
 Currently, this plugin only supports tidying the simple form:
 
-```markdown
+```md
 No  | Color | Notes
 --- | ----- | --------------------
 1   | Red   | Can symbolize danger
@@ -21,7 +21,7 @@ No  | Color | Notes
 This plugin requires the [Tabular][4] plugin. So install both using your
 favorite plugin manager like [vim-plug][5], for example:
 
-```vimscript
+```vim
 Plug 'godlygeek/tabular'
 Plug `genebarker/vim-tidytable'
 ```
