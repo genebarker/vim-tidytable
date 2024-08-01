@@ -1,7 +1,8 @@
 # Vim Tidy Table
 
 A Vim plugin for tidying markdown pipe tables (see `pipe_tables` in
-[Pandoc Markdown][1]).
+[Pandoc Markdown][1]). Pipe tables are widely supported and work well in
+[Github Markdown][2] and [PHP Markdown Extra][3].
 
 Currently, this plugin only supports tidying the simple form:
 
@@ -17,8 +18,8 @@ No  | Color | Notes
 
 ## Installation
 
-This plugin requires the [Tabular][2] plugin. Just install using your
-favorite plugin manager like [vim-plug][3], for example:
+This plugin requires the [Tabular][4] plugin. So install both using your
+favorite plugin manager like [vim-plug][5], for example:
 
 ```vimscript
 Plug 'godlygeek/tabular'
@@ -27,5 +28,7 @@ Plug `genebarker/vim-tidytable'
 
 
 [1]: https://pandoc.org/MANUAL.html#pandocs-markdown
-[2]: https://github.com/godlygeek/tabular
-[3]: https://github.com/junegunn/vim-plug
+[2]: https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
+[3]: https://michelf.ca/projects/php-markdown/extra/#table
+[4]: https://github.com/godlygeek/tabular
+[5]: https://github.com/junegunn/vim-plug
