@@ -23,7 +23,7 @@ favorite plugin manager like [vim-plug][5], for example:
 
 ```vim
 Plug 'godlygeek/tabular'
-Plug `genebarker/vim-tidytable'
+Plug 'genebarker/vim-tidytable'
 ```
 
 
