@@ -8,7 +8,7 @@ if exists('g:loaded_fugitive')
 endif
 let g:loaded_fugitive = 1
 
-function! s:TidyMarkdownTable()
+function! s:TidyMarkdownPipeTable()
     if !(VerifyHasAlignmentFunction() && VerifyInsideMarkdownTable()) 
         return 0
     endif
@@ -96,4 +96,4 @@ function! s:TidyMarkdownTableHeader()
     call setline(start_line_no + 1, tidy_seperator)
 endfunc
 
-command! TidyMarkdownTable call s:TidyMarkdownTable()
+command! TidyMarkdownTable call s:TidyMarkdownPipeTable()
