@@ -22,8 +22,13 @@ This plugin requires the [Tabular][4] plugin. So install both using your
 favorite plugin manager like [vim-plug][5], for example:
 
 ```vim
+call plug#begin()
+
+" List your plugins here
 Plug 'godlygeek/tabular'
 Plug 'genebarker/vim-tidytable'
+
+call plug#end()
 ```
 
 
