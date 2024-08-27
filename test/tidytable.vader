@@ -1,0 +1,39 @@
+Given (verify no change when no pipes):
+  line 1
+  line 2
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  line 1
+  line 2
+
+-------------------------------------------------
+
+Given (verify aligns generic table):
+  head1|head2|head3
+  ---|---|---
+  entry_one|entry_two|entry_three
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  head1     | head2     | head3
+  --------- | --------- | -----------
+  entry_one | entry_two | entry_three
+
+-------------------------------------------------
+
+Given (verify aligns when no header line):
+  him|her
+  this|that
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  him  | her
+  this | that
+
