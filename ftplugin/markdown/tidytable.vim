@@ -12,9 +12,16 @@ function! TidyMarkdownPipeTable()
     if !(s:VerifyHasAlignmentFunction() && s:VerifyInsideMarkdownTable()) 
         return 0
     endif
+    let has_outer_pipes = s:HasOuterPipes()
+    if has_outer_pipes
+        call s:StripOuterPipes()
+    endif
     call s:MinimizeSeperatorLine()
     call s:AlignMarkdownTableColumns()
     call s:TidyMarkdownTableHeader()
+    if has_outer_pipes
+        call s:AddOuterPipes()
+    endif
 endfunc
 
 function! s:VerifyHasAlignmentFunction()
@@ -32,6 +39,28 @@ function! s:VerifyInsideMarkdownTable()
     endif
     echo 'error: must be inside a markdown table'
     return 0
+endfunc
+
+function! s:HasOuterPipes()
+    return getline(s:GetStartLineNoOfTable()) =~# '^\s*|.*|\s*$'
+endfunc
+
+function! s:StripOuterPipes()
+    for line_no in range(s:GetStartLineNoOfTable(), s:GetEndLineNoOfTable())
+        let line = substitute(getline(line_no), '^\s*|\s*', '', '')
+        call setline(line_no, substitute(line, '\s*|\s*$', '', ''))
+    endfor
+endfunc
+
+function! s:AddOuterPipes()
+    let start_line_no = s:GetStartLineNoOfTable()
+    let end_line_no = s:GetEndLineNoOfTable()
+    let width = max(map(getline(start_line_no, end_line_no), 'strlen(v:val)'))
+    for line_no in range(start_line_no, end_line_no)
+        let line = getline(line_no)
+        let line .= repeat(' ', width - strlen(line))
+        call setline(line_no, '| ' . line . ' |')
+    endfor
 endfunc
 
 function! s:MinimizeSeperatorLine()
@@ -74,15 +103,8 @@ function! s:TidyMarkdownTableHeader()
         echo 'info: no markdown table header to tidy'
         return
     endif
-    let max_line_length = strlen(getline(start_line_no))
-    if end_line_no > (start_line_no + 1)
-        let table = getline(start_line_no + 2, end_line_no)
-        for line in table
-            if strlen(line) > max_line_length
-                let max_line_length = strlen(line)
-            endif
-        endfor
-    endif
+    " widest line, separator included so its 3-dash minimum survives
+    let max_line_length = max(map(getline(start_line_no, end_line_no), 'strlen(v:val)'))
     " replace undashed spaces with dashes
     let tidy_seperator = substitute(seperator_line, ' ', '-', 'g')
     " pad pipes with a space

@@ -4,20 +4,31 @@ A Vim plugin for tidying markdown pipe tables (see `pipe_tables` in
 [Pandoc Markdown][1]). Pipe tables are widely supported and work well in
 [Github Markdown][2] and [PHP Markdown Extra][3].
 
-Currently, this plugin only supports tidying the simple form:
+It tidies both common forms, and keeps whichever one the table
+already uses:
 
 ```md
-
-## Simple Pipe Table
-
 No  | Color | Notes
 --- | ----- | --------------------
 1   | Red   | Can symbolize danger
 2   | White | Too bright
-3   | Blue  | A great color
+
+| No  | Color | Notes                |
+| --- | ----- | -------------------- |
+| 1   | Red   | Can symbolize danger |
+| 2   | White | Too bright           |
 ```
 
 **Note** that the header line requires a minimum of 3 dashes.
+
+## Usage
+
+With the cursor anywhere in a table, run `:TidyMarkdownTable`, or
+map it, for example:
+
+```vim
+nnoremap <leader>at :TidyMarkdownTable<CR>
+```
 
 ## Installation
 

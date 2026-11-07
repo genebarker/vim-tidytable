@@ -37,3 +37,18 @@ Expect:
   him  | her
   this | that
 
+
+#------------------------------------------------
+
+Given (verify aligns table with outer pipes):
+  | a | bb |
+  |---|---|
+  | ccc | d |
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  | a   | bb  |
+  | --- | --- |
+  | ccc | d   |
