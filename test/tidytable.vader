@@ -69,3 +69,18 @@ Expect:
   | ----- | ------- |
   | ʻāiga | family  |
   | ⏎     | return  |
+
+#------------------------------------------------
+
+Given (verify tidy table is unchanged):
+  | a   | bb  |
+  | --- | --- |
+  | ccc | d   |
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  | a   | bb  |
+  | --- | --- |
+  | ccc | d   |
