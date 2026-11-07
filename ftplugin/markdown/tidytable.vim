@@ -55,10 +55,10 @@ endfunc
 function! s:AddOuterPipes()
     let start_line_no = s:GetStartLineNoOfTable()
     let end_line_no = s:GetEndLineNoOfTable()
-    let width = max(map(getline(start_line_no, end_line_no), 'strlen(v:val)'))
+    let width = max(map(getline(start_line_no, end_line_no), 'strdisplaywidth(v:val)'))
     for line_no in range(start_line_no, end_line_no)
         let line = getline(line_no)
-        let line .= repeat(' ', width - strlen(line))
+        let line .= repeat(' ', width - strdisplaywidth(line))
         call setline(line_no, '| ' . line . ' |')
     endfor
 endfunc
@@ -104,7 +104,7 @@ function! s:TidyMarkdownTableHeader()
         return
     endif
     " widest line, separator included so its 3-dash minimum survives
-    let max_line_length = max(map(getline(start_line_no, end_line_no), 'strlen(v:val)'))
+    let max_line_length = max(map(getline(start_line_no, end_line_no), 'strdisplaywidth(v:val)'))
     " replace undashed spaces with dashes
     let tidy_seperator = substitute(seperator_line, ' ', '-', 'g')
     " pad pipes with a space

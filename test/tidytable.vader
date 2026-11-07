@@ -52,3 +52,20 @@ Expect:
   | a   | bb  |
   | --- | --- |
   | ccc | d   |
+
+#------------------------------------------------
+
+Given (verify aligns table with multibyte characters):
+  | word | meaning |
+  |---|---|
+  | ʻāiga | family |
+  | ⏎ | return |
+
+Do:
+  :TidyMarkdownTable\<Enter>
+
+Expect:
+  | word  | meaning |
+  | ----- | ------- |
+  | ʻāiga | family  |
+  | ⏎     | return  |
